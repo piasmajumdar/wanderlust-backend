@@ -58,6 +58,12 @@ async function run() {
         res.json(result);
     })
 
+    app.delete('/destination/:id', async(req,res)=>{
+        const {id} = req.params;
+        const result = await destinationCollection.deleteOne({_id: new ObjectId(id)})
+        res.json(result);
+    })
+
 
     await client.connect();
     await client.db("admin").command({ ping: 1 });
